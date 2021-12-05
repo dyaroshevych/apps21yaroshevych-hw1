@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
     static final double MIN_TEMPERATURE = -273.0;
     private double[] temperatureSeries;
+    private int emptyCellsCount = 0;
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         for (double tempValue : temperatureSeries) {
@@ -140,6 +141,7 @@ public class TemperatureSeriesAnalysis {
             for (int idx = 0; idx < temperatureSeries.length; idx++) {
                 if (temperatureSeries[idx] == Double.MAX_VALUE) {
                     temperatureSeries[idx] = tempValue;
+                    emptyCellsCount -= 1;
                     break;
                 }
             }
@@ -148,12 +150,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     private void increaseStorageIfNeeded() {
-        for (double value : temperatureSeries) {
-            if (value == Double.MAX_VALUE) {
-                return;
-            }
+        if (emptyCellsCount == 0) {
+            temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length * 2);
+            emptyCellsCount = temperatureSeries.length;
         }
-
-        temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length * 2);
     }
 }
