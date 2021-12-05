@@ -36,7 +36,7 @@ public class TemperatureSeriesAnalysis {
         double variance = 0.0;
         double avg = average();
         for (double tempValue: temperatureSeries) {
-            variance += Math.pow(tempValue - avg, 2);
+            variance += (tempValue - avg) * (tempValue - avg);
         }
 
         return Math.sqrt(variance / temperatureSeries.length);
@@ -151,7 +151,8 @@ public class TemperatureSeriesAnalysis {
 
     private void increaseStorageIfNeeded() {
         if (emptyCellsCount == 0) {
-            temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length * 2);
+            temperatureSeries = Arrays.copyOf(temperatureSeries,
+                    temperatureSeries.length * 2);
             emptyCellsCount = temperatureSeries.length;
         }
     }
