@@ -74,9 +74,11 @@ public class TemperatureSeriesAnalysis {
 
         double closestTempToValue = temperatureSeries[0];
         for (double tempValue : temperatureSeries) {
-            if (Math.abs(tempValue - value) < Math.abs(closestTempToValue - value)) {
+            if (Math.abs(tempValue - value) <
+                    Math.abs(closestTempToValue - value)) {
                 closestTempToValue = tempValue;
-            } else if (Math.abs(tempValue - value) == Math.abs(closestTempToValue - value)) {
+            } else if (Math.abs(tempValue - value) ==
+                    Math.abs(closestTempToValue - value)) {
                 closestTempToValue = Math.max(closestTempToValue, tempValue);
             }
         }
