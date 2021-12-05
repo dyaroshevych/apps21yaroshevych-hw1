@@ -158,7 +158,7 @@ public class TemperatureSeriesAnalysisTest {
         // setup input data and expected result
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        TempSummaryStatistics expResult = new TempSummaryStatistics(1.0, 3.741657, -1.0, 5.0);
+        TempSummaryStatistics expResult = new TempSummaryStatistics(1.0, 3.741657, -5.0, 5.0);
 
         // call tested method
         TempSummaryStatistics actualResult = seriesAnalysis.summaryStatistics();
@@ -206,7 +206,7 @@ public class TemperatureSeriesAnalysisTest {
         double expectedResult = 5.0;
 
         // call tested method
-        double actualResult = seriesAnalysis.findTempClosestToValue(3.0);
+        double actualResult = seriesAnalysis.findTempClosestToValue(4.0);
 
         // compare expected result with actual result
         assertEquals(expectedResult, actualResult, 0.0001);
@@ -234,21 +234,7 @@ public class TemperatureSeriesAnalysisTest {
         double expectedResult = 5.0;
 
         // call tested method
-        double actualResult = seriesAnalysis.findTempsLessThen(3.0)[0];
-
-        // compare expected result with actual result
-        assertEquals(expectedResult, actualResult, 0.0001);
-    }
-
-    @Test
-    public void testAddTemps() {
-        // setup input data and expected result
-        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
-        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        int expectedResult = 8;
-
-        // call tested method
-        int actualResult = seriesAnalysis.addTemps(2.0, 6.0);
+        double actualResult = seriesAnalysis.findTempsGreaterThen(3.0)[0];
 
         // compare expected result with actual result
         assertEquals(expectedResult, actualResult, 0.0001);

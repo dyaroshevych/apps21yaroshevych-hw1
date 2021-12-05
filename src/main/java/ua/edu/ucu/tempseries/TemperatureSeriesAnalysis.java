@@ -148,17 +148,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     private void increaseStorageIfNeeded() {
-        if (!hasEmptyPositions()) {
-            temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length * 2);
-        }
-    }
-
-    private boolean hasEmptyPositions() {
         for (double value : temperatureSeries) {
             if (value == Double.MAX_VALUE) {
-                return true;
+                return;
             }
         }
-        return false;
+
+        temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length * 2);
     }
 }
